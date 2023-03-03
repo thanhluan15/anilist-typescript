@@ -53,7 +53,10 @@ function Anilist() {
       <div className="flex gap-4 flex-wrap px-10">
         {anilist?.data?.AnimeSearch?.media?.map((i) => {
           return (
-            <div key={i?.id} className="w-60 flex justify-center flex-col items-center gap-5">
+            <div
+              key={i?.id}
+              className="w-60 flex justify-center flex-col items-center gap-5"
+            >
               <img
                 className="w-60 h-80 object-cover object-center"
                 src={i?.coverImage?.large}
