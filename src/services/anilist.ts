@@ -1,8 +1,1 @@
-import ".///"
-
-// GraphQL
-
-// - Field
-// {
-    // waifu
-// }
+import "../index.css"

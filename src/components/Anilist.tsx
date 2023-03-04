@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { animeQuery, basicQuery, pageInfoQuery } from "../services/queries";
 
 function Anilist() {
-  const [anilist, setAnilist] = useState([]);
+  const [anilist, setAnilist] = useState([]) as any;
   const [animeName, setAnimeName] = useState("");
 
   const url = "https://graphql.anilist.co";
@@ -14,7 +14,7 @@ function Anilist() {
   //   page: 1,
   //   perPage: 3,
   // };
-  console.log(animeQuery(`${animeName}`));
+  // console.log(animeQuery(`${animeName}`));
 
   const options = {
     method: "post",
@@ -33,7 +33,7 @@ function Anilist() {
       .then((res) => setAnilist(res));
   };
 
-  console.log(anilist);
+  // console.log(anilist);
 
   useEffect(() => {
     getData();
@@ -45,13 +45,13 @@ function Anilist() {
         <h3 className="font-semibold">Search Anime: </h3>
         <input
           className="px-4 py-2"
-          placeholder="anime"
+          placeholder="Anime"
           value={animeName}
           onChange={(e) => setAnimeName(e.target.value)}
         />
       </div>
       <div className="flex gap-4 flex-wrap px-10">
-        {anilist?.data?.AnimeSearch?.media?.map((i) => {
+        {anilist?.data?.AnimeSearch?.media?.map((i: any) => {
           return (
             <div
               key={i?.id}
