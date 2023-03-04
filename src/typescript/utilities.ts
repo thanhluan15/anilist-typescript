@@ -39,10 +39,32 @@ const recordWaifu = (waifu: Required<WaifuInfo>): WaifuInfo => {
 
 console.log(recordWaifu({ ...waifu, type: "tsundere" }));
 
-const readWaifu : Readonly<WaifuInfo> = {...waifu}
+const readWaifu: Readonly<WaifuInfo> = { ...waifu };
 
 // readWaifu.hairStyle = "red"
 
 // waifu.hairColor = "red"
 
-console.log()
+console.log(readWaifu);
+
+
+// Record (used to map the properties of a type to another type)
+
+type WaifuName = "Nino" | "Itsuki" | "Yotsuba";
+
+// type WaifuName = {
+//     Nino: string,
+//     Itsuki: string,
+//     Yotsuba: string
+// }
+
+type WaifuProps = Omit<Partial<WaifuInfo>, "name">;
+
+
+const waifuColor: Record<WaifuName, WaifuProps> = {
+  Nino: { hairColor: "pink" },
+  Itsuki: { hairColor: "red" },
+  Yotsuba: { hairColor: "orange" },
+};
+
+console.log(waifuColor);
