@@ -68,9 +68,7 @@ const Type = () => {
 
   return (
     <div>
-      {obj["Seinen"].map((i) => (
-        <div key={i}>{i}</div>
-      ))}
+
     </div>
   );
 };
