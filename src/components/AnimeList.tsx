@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { AnimeData, getAnimeInfo } from "../services/anilist";
+import { getAnimeInfo } from "../services/anilist";
+import { AnimeData } from "../types/anilist";
 import "../services/anilist";
 
 const AnimeList = () => {
   const [animeName, setAnimeName] = useState("");
 
-  const { data: anilist } = useQuery<AnimeData>({
+  const { data: anilist } = useQuery<AnimeData | undefined>({
     queryKey: ["anilist", animeName],
-    queryFn: () =>  getAnimeInfo(animeName),
+    queryFn: () => getAnimeInfo(animeName),
   });
 
-  console.log(anilist)
+  console.log(anilist);
 
   return (
     <div className="flex flex-col gap-6">
@@ -41,7 +42,7 @@ const AnimeList = () => {
               </div>
             </div>
           );
-        })}{" "}
+        })}
       </div>
     </div>
   );

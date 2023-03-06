@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AnimeData } from "../services/anilist";
+import { AnimeData } from "../types/anilist";
 import { animeQuery, basicQuery, pageInfoQuery } from "../services/queries";
 
 function Anilist() {
