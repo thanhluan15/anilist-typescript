@@ -1,44 +1,17 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { AnimeData } from "../services/anilist";
-import { animeQuery, basicQuery, pageInfoQuery } from "../services/queries";
+import { AnimeData, getAnimeInfo } from "../services/anilist";
+import "../services/anilist";
 
-function Anilist() {
-  const [anilist, setAnilist] = useState<AnimeData>(null!);
+const AnimeList = () => {
   const [animeName, setAnimeName] = useState("");
 
-  const url = "https://graphql.anilist.co";
+  const { data: anilist } = useQuery<AnimeData>({
+    queryKey: ["anilist", animeName],
+    queryFn: () =>  getAnimeInfo(animeName),
+  });
 
-  // const variables = { id: 15125 };
-  // const variables = { query: "Fate/Zero" };
-  // var variables = {
-  //   search: "Fate/Zero",
-  //   page: 1,
-  //   perPage: 3,
-  // };
-  // console.log(animeQuery(`${animeName}`));
-
-  const options = {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      query: animeQuery(`${animeName}`),
-    }),
-  };
-
-  const getData = async () => {
-    const data: any = await fetch(url, options)
-      .then((res) => res.json())
-      .then((res) => setAnilist(res));
-  };
-
-  console.log(anilist);
-
-  useEffect(() => {
-    getData();
-  }, [animeName]);
+  console.log(anilist)
 
   return (
     <div className="flex flex-col gap-6">
@@ -72,6 +45,6 @@ function Anilist() {
       </div>
     </div>
   );
-}
+};
 
-export default Anilist;
+export default AnimeList;

@@ -133,4 +133,36 @@ type T0 = NonNullable<string | undefined | null>;
 //type T0 = string 
 
 
+//Parameter
+type T1 = Parameters<(s: string, a: string) => string>
+// ==> type T1 = [s: string]
+type R1 = ReturnType<(s: string) => () => void>
+
+const rep:R1 = () => {
+    console.log("This is a variable of type R1")
+}
+
+console.log(rep)
+
+
+type T2 = Parameters<<T>(arg: T) => T>
+// ==> type T2 = [arg: unknown]
+
+type R2 = ReturnType<<T>(arg: T) => string>
+
+
+const t: T1 = ['Nino', "Miku"]
+
+
+declare function name(params : {a: string, b: string}): void;
+
+type T3 = Parameters<typeof name>
+
+type R3 = ReturnType<< U extends string[], T extends U >(a: T) => T >
+
+
+console.log(t)
+
+
+
 

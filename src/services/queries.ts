@@ -41,24 +41,25 @@ export const animeQuery = (name: string) => `
         }
       }
     }
-    CharacterSearch: Page {
-        characters(search: "${name}") {
-          id
-          name {
-            first
-            last
-          }
-          image {
-            large
-          }
-        }
-      }
-      StudioSearch: Page {
-        studios(search: "${name}") {
-          id
-          name
-        }
-      }
   }`;
+
+      // CharacterSearch: Page {
+    //     characters(search: "${name}") {
+    //       id
+    //       name {
+    //         first
+    //         last
+    //       }
+    //       image {
+    //         large
+    //       }
+    //     }
+    //   }
+    //   StudioSearch: Page {
+    //     studios(search: "${name}") {
+    //       id
+    //       name
+    //     }
+    //   }
 
 

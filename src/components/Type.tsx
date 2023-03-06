@@ -1,6 +1,6 @@
 import React from "react";
 // import "../typescript/generic";
-import "../typescript/utilities";
+// import "../typescript/utilities";
 
 const Type = () => {
   interface Girl {
