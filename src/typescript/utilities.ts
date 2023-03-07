@@ -45,9 +45,7 @@ console.log(recordWaifu({ ...waifu, type: "tsundere" }));
 
 const readWaifu: Readonly<WaifuInfo> = { ...waifu };
 
-// readWaifu.hairStyle = "red"
-
-// waifu.hairColor = "red"
+// readWaifu.hairStyle = "red" ==> error
 
 console.log(readWaifu);
 
@@ -55,11 +53,11 @@ console.log(readWaifu);
 
 type WaifuName = "Ichika" | "Nino" | "Miku" | "Yotsuba" | "Itsuki";
 
-// type WaifuName = {
-//     Nino: string,
-//     Itsuki: string,
-//     Yotsuba: string
-// }
+type WaifuDesc = {
+  Nino: string;
+  Itsuki: string;
+  Yotsuba: string;
+};
 
 type WaifuProps = Omit<Partial<WaifuInfo>, "name">;
 
@@ -72,8 +70,6 @@ const waifuColor: Record<WaifuName, WaifuProps> = {
 };
 
 console.log(waifuColor);
-
-// Pick and Omit
 
 //Pick
 
@@ -98,7 +94,6 @@ const ninoHair: Partial<Record<WaifuName, WaifuHair>> = {
 console.log(ninoHair);
 
 //Omit
-
 type HideSecret = Omit<WaifuInfo, "secret">;
 
 const info: HideSecret = {
@@ -110,7 +105,6 @@ const info: HideSecret = {
 };
 
 console.log(info);
-
 // Exclude (Constructs a type by excluding from UnionType all union member that are assignable to ExcludedMembers)
 
 type HideWaifu = Exclude<WaifuName, "Ichika">;
@@ -130,39 +124,31 @@ console.log(waifuPicked);
 //Non nullable
 
 type T0 = NonNullable<string | undefined | null>;
-//type T0 = string 
-
+//type T0 = string
 
 //Parameter
-type T1 = Parameters<(s: string, a: string) => string>
+type T1 = Parameters<(s: string, a: string) => string>;
 // ==> type T1 = [s: string]
-type R1 = ReturnType<(s: string) => () => void>
+type R1 = ReturnType<(s: string) => () => void>;
 
-const rep:R1 = () => {
-    console.log("This is a variable of type R1")
-}
+const rep: R1 = () => {
+  console.log("This is a variable of type R1");
+};
 
-console.log(rep)
+console.log(rep);
 
-
-type T2 = Parameters<<T>(arg: T) => T>
+type T2 = Parameters<<T>(arg: T) => T>;
 // ==> type T2 = [arg: unknown]
 
-type R2 = ReturnType<<T>(arg: T) => string>
+//ReturnType
+type R2 = ReturnType<<T>(arg: T) => string>;
 
+const t: T1 = ["Nino", "Miku"];
 
-const t: T1 = ['Nino', "Miku"]
+declare function name(params: { a: string; b: string }): void;
 
+type T3 = Parameters<typeof name>;
 
-declare function name(params : {a: string, b: string}): void;
+type R3 = ReturnType<<U extends string[], T extends U>(a: T) => T>;
 
-type T3 = Parameters<typeof name>
-
-type R3 = ReturnType<< U extends string[], T extends U >(a: T) => T >
-
-
-console.log(t)
-
-
-
-
+console.log(t);

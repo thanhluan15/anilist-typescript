@@ -28,6 +28,8 @@ function Anilist() {
   console.log(anilist);
   console.log(import.meta.env.PROD);
 
+  
+
   useEffect(() => {
     getData();
   }, [animeName]);

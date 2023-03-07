@@ -5,8 +5,8 @@ const isObj = <T>(arg: T): boolean => {
   return typeof arg === "object" && !Array.isArray(arg) && arg !== null;
 };
 
-// console.log(isObj(null));
-// console.log(isObj({ name: "Luan" }));
+console.log(isObj(null));
+console.log(isObj({ name: "Luan" }));
 
 const isTrue = <T>(arg: T): { arg: T; is: boolean } => {
   if (Array.isArray(arg) && !arg.length) {
@@ -18,14 +18,14 @@ const isTrue = <T>(arg: T): { arg: T; is: boolean } => {
   return { arg, is: !!arg };
 };
 
-// console.log(isTrue(null));
-// console.log(isTrue([1, 2, 3]));
-// console.log(isTrue({}));
-// console.log(isTrue(""));
-// console.log(isTrue("dark"));
-// console.log(isTrue(false));
-// console.log(isTrue(NaN));
-// console.log(isTrue([]));
+console.log(isTrue(null));
+console.log(isTrue([1, 2, 3]));
+console.log(isTrue({}));
+console.log(isTrue(""));
+console.log(isTrue("dark"));
+console.log(isTrue(false));
+console.log(isTrue(NaN));
+console.log(isTrue([]));
 
 interface BoolCheck<T> {
   value: T;
@@ -42,13 +42,13 @@ const checkBooleanValue = <T>(arg: T): BoolCheck<T> => {
   return { value: arg, is: !!arg };
 };
 
-// console.log(checkBooleanValue(null));
+console.log(checkBooleanValue(null));
 
 const processUser = <T extends WaifuInfo>(user: T): T => {
   return user;
 };
 
-// console.log(processUser({ id: 3, name: "aaaaa" }));
+console.log(processUser({ id: 3, name: "aaaaa" }));
 
 interface WaifuInfo {
   id: number;
