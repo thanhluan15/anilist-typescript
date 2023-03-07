@@ -8,15 +8,6 @@ function Anilist() {
 
   const url = "https://graphql.anilist.co";
 
-  // const variables = { id: 15125 };
-  // const variables = { query: "Fate/Zero" };
-  // var variables = {
-  //   search: "Fate/Zero",
-  //   page: 1,
-  //   perPage: 3,
-  // };
-  // console.log(animeQuery(`${animeName}`));
-
   const options = {
     method: "post",
     headers: {
@@ -35,6 +26,7 @@ function Anilist() {
   };
 
   console.log(anilist);
+  console.log(import.meta.env.PROD);
 
   useEffect(() => {
     getData();
