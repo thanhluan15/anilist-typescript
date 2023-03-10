@@ -1,3 +1,5 @@
+/** @format */
+
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { getAnimeInfo } from "../services/anilist";
@@ -7,7 +9,7 @@ import "../services/anilist";
 const AnimeList = () => {
   const [animeName, setAnimeName] = useState("");
 
-  const { data: anilist } = useQuery<AnimeData | undefined>({
+  const { data: anilist } = useQuery<AnimeData>({
     queryKey: ["anilist", animeName],
     queryFn: () => getAnimeInfo(animeName),
   });
@@ -26,19 +28,22 @@ const AnimeList = () => {
         />
       </div>
       <div className="flex gap-4 flex-wrap px-10">
-        {anilist?.data?.AnimeSearch?.media?.map((i: any) => {
+        {anilist?.data?.AnimeSearch?.media?.map((i) => {
           return (
             <div
               key={i?.id}
-              className="w-60 flex justify-center flex-col items-center gap-5"
+              className="w-60 flex justify-center flex-col items-center gap-5 cursor-pointer"
             >
               <img
                 className="w-60 h-80 object-cover object-center"
                 src={i?.coverImage?.large}
                 alt=""
               />
-              <div className="font-semibold text-1xl">
-                {i?.title?.userPreferred}
+              <div className="flex">
+                <div className="font-semibold text-1xl">
+                  {i?.title?.userPreferred}
+                </div>
+                <button>Watch</button>
               </div>
             </div>
           );

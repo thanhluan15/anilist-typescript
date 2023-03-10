@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AnimeData } from "../types/anilist";
 import { animeQuery, basicQuery, pageInfoQuery } from "../services/queries";
+import { Link } from "react-router-dom";
 
 function Anilist() {
   const [anilist, setAnilist] = useState<AnimeData>(null!);
@@ -20,15 +21,14 @@ function Anilist() {
   };
 
   const getData = async () => {
-    const data: any = await fetch(url, options)
+    const data = await fetch(url, options)
       .then((res) => res.json())
       .then((res) => setAnilist(res));
+
+      console.log(data)
   };
 
   console.log(anilist);
-  console.log(import.meta.env.PROD);
-
-  
 
   useEffect(() => {
     getData();
@@ -60,9 +60,10 @@ function Anilist() {
               <div className="font-semibold text-1xl">
                 {i?.title?.userPreferred}
               </div>
+              <Link to = {`/${i?.id}`}><button className="bg-green-400">Watch</button></Link>
             </div>
           );
-        })}{" "}
+        })}
       </div>
     </div>
   );
