@@ -1,17 +1,20 @@
 /** @format */
 
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getAnimeInfo } from "../services/anilist";
 import { AnimeData } from "../types/anilist";
 import "../services/anilist";
+import { Link } from "react-router-dom";
+import Search from "./Search";
+import { SearchContext, SearchProps } from "../context/SearchContext";
 
 const AnimeList = () => {
-  const [animeName, setAnimeName] = useState("");
+  const { result, handleResult } = useContext<SearchProps>(SearchContext);
 
   const { data: anilist } = useQuery<AnimeData>({
-    queryKey: ["anilist", animeName],
-    queryFn: () => getAnimeInfo(animeName),
+    queryKey: ["anilist", result],
+    queryFn: () => getAnimeInfo(result),
   });
 
   console.log(anilist);
@@ -20,12 +23,10 @@ const AnimeList = () => {
     <div className="flex flex-col gap-6">
       <div className="ml-4 flex justify-center items-center mt-4 gap-2">
         <h3 className="font-semibold">Search Anime: </h3>
-        <input
-          className="px-4 py-2"
-          placeholder="Anime"
-          value={animeName}
-          onChange={(e) => setAnimeName(e.target.value)}
-        />
+        <Search
+          animeName={result}
+          setAnimeName={handleResult}
+        ></Search>
       </div>
       <div className="flex gap-4 flex-wrap px-10">
         {anilist?.data?.AnimeSearch?.media?.map((i) => {
@@ -43,7 +44,9 @@ const AnimeList = () => {
                 <div className="font-semibold text-1xl">
                   {i?.title?.userPreferred}
                 </div>
-                <button>Watch</button>
+                <Link to={`/anime/${i?.id}`}>
+                  <button className="bg-green-400">Watch</button>
+                </Link>
               </div>
             </div>
           );

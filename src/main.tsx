@@ -8,6 +8,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import AnimeProvider from "./context/AnimeContext";
+import SearchProvider from "./context/SearchContext";
 import "./index.css";
 
 const client = new QueryClient();
@@ -16,9 +17,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <QueryClientProvider client={client}>
       <ReactQueryDevtools />
       <BrowserRouter>
-        <AnimeProvider>
-          <App />
-        </AnimeProvider>
+        <SearchProvider>
+          <AnimeProvider>
+            <App />
+          </AnimeProvider>
+        </SearchProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>

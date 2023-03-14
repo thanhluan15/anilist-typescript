@@ -152,3 +152,5 @@ type T3 = Parameters<typeof name>;
 type R3 = ReturnType<<U extends string[], T extends U>(a: T) => T>;
 
 console.log(t);
+
+

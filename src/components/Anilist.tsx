@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AnimeData } from "../types/anilist";
 import { animeQuery, basicQuery, pageInfoQuery } from "../services/queries";
 import { Link } from "react-router-dom";
+import Search from "./Search";
 
 function Anilist() {
   const [anilist, setAnilist] = useState<AnimeData>(null!);
@@ -25,10 +26,11 @@ function Anilist() {
       .then((res) => res.json())
       .then((res) => setAnilist(res));
 
-      console.log(data)
+    console.log(data);
   };
 
   console.log(anilist);
+  console.log(animeName);
 
   useEffect(() => {
     getData();
@@ -38,15 +40,10 @@ function Anilist() {
     <div className="flex flex-col gap-6">
       <div className="ml-4 flex justify-center items-center mt-4 gap-2">
         <h3 className="font-semibold">Search Anime: </h3>
-        <input
-          className="px-4 py-2"
-          placeholder="Anime"
-          value={animeName}
-          onChange={(e) => setAnimeName(e.target.value)}
-        />
+        <Search animeName={animeName} setAnimeName={(e)=> setAnimeName(e.target.value)}></Search>
       </div>
       <div className="flex gap-4 flex-wrap px-10">
-        {anilist?.data?.AnimeSearch?.media?.map((i: any) => {
+        {anilist?.data?.AnimeSearch?.media?.map((i) => {
           return (
             <div
               key={i?.id}
@@ -60,7 +57,9 @@ function Anilist() {
               <div className="font-semibold text-1xl">
                 {i?.title?.userPreferred}
               </div>
-              <Link to = {`/${i?.id}`}><button className="bg-green-400">Watch</button></Link>
+              <Link to={`/${i?.id}`}>
+                <button className="bg-green-400">Watch</button>
+              </Link>
             </div>
           );
         })}
