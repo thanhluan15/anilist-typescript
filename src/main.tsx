@@ -7,8 +7,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import AnimeProvider from "./context/AnimeContext";
-import SearchProvider from "./context/SearchContext";
+import AnimeProvider from "./contexts/AnimeContext";
+import SearchProvider from "./contexts/SearchContext";
 import "./index.css";
 
 const client = new QueryClient();

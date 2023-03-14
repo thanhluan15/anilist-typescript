@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useAnilist } from "../context/AnimeContext";
-import { SearchContext } from "../context/SearchContext";
+import { useAnilist } from "../contexts/AnimeContext";
+import { SearchContext } from "../contexts/SearchContext";
 import { getAnimeInfo } from "../services/anilist";
 import { AnimeData } from "../types/anilist";
 

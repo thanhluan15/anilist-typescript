@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 
-export interface AnimeProps {
+export interface AnimeDitspatchProps {
   animeName: string;
   setAnimeName: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const Search = ({ animeName, setAnimeName }: AnimeProps) => {
+interface InputProps {
+  className?: string;
+}
+
+export interface AnimeProps extends AnimeDitspatchProps, InputProps {}
+
+const Search = ({
+  animeName,
+  setAnimeName,
+  className,
+  ...prop
+}: AnimeProps) => {
   return (
     <div>
       <input
@@ -13,6 +24,7 @@ const Search = ({ animeName, setAnimeName }: AnimeProps) => {
         placeholder="anime"
         value={animeName}
         onChange={setAnimeName}
+        className={`${className} h-10 outline-none px-3`}
       />
     </div>
   );
