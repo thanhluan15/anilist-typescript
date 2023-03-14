@@ -1,24 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
-import { useAnilist } from "../contexts/AnimeContext";
-import { SearchContext } from "../contexts/SearchContext";
-import { getAnimeInfo } from "../services/anilist";
-import { AnimeData } from "../types/anilist";
+import { useLocation, useParams } from "react-router-dom";
 
 const AnimeCard = () => {
-  const paramIds = useParams();
-  const id = Number(paramIds.id);
-  const anime = useAnilist();
-
-  console.log(anime);
-
-  console.log(id);
+  const animeData = useLocation();
   return (
     <div>
-      {anime?.data.AnimeSearch.media.map((a) =>
-        a.id === id ? <div>{a.title.userPreferred}</div> : ""
-      )}
+      <div>
+        <img src={animeData.state.animeData.coverImage.large} alt="" />
+        <div>{animeData.state.animeData.title.userPreferred}</div>
+      </div>
     </div>
   );
 };

@@ -28,7 +28,7 @@ const AnimeList = () => {
   const handleMoveToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
+
   useEffect(() => {
     handleScrool();
     return () => {};
@@ -59,7 +59,10 @@ const AnimeList = () => {
                 <div className="font-semibold text-1xl">
                   {i?.title?.userPreferred}
                 </div>
-                <Link to={`/anime/${i?.id}`}>
+                <Link
+                  to={{ pathname: `/anime/${i.id}` }}
+                  state={{ animeData: i }}
+                >
                   <button className="bg-green-400 px-4 py-2 rounded-md text-white hover:bg-green-600">
                     Watch
                   </button>
@@ -72,7 +75,7 @@ const AnimeList = () => {
 
       {isScrool && (
         <div
-          className="w-16 h-16 rounded-full bg-green-400 fixed bottom-5 right-5 border-4 border-x-fuchsia-900 border-fuchsia-600 flex justify-center items-center cursor-pointer"
+          className="w-16 h-16 rounded-full bg-green-400 fixed bottom-5 right-5 border-4 border-x-black border-green-600 flex justify-center items-center cursor-pointer"
           onClick={handleMoveToTop}
         >
           <BiArrowToTop size={30} color={"white"}></BiArrowToTop>
